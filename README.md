@@ -7,7 +7,7 @@ A web app allow user login by Google or Facebook to chatting in real-time
 # Technologies used:
 
 - React
-- FireBase
+- Firebase
 - React Router
 - Ant Design
 
