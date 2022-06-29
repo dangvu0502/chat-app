@@ -11,18 +11,18 @@ import { addDocument, generateKeywords } from "../../firebase/services";
 
 const { Title } = Typography;
 
+const facebookProvider = new FacebookAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+
 const Login = () => {
-  const handleLogin = async (e) => {
-    const name = e.target.name;
-    const provider =
-      name === "loginWithFacebook"
-        ? new FacebookAuthProvider()
-        : new GoogleAuthProvider();
+
+  const handleLogin = async (provider) => {
     const data = await signInWithPopup(auth, provider);
     const additionalUserInfo = getAdditionalUserInfo(data);
+    
     if (additionalUserInfo.isNewUser) {
       const { user } = data;
-     // console.log({ user });
+      // console.log({ user });
       addDocument("users", {
         displayName: user.displayName,
         email: user.email,
@@ -41,14 +41,14 @@ const Login = () => {
         <Button
           name="loginWithGoogle"
           style={{ width: "100%", marginBottom: 5 }}
-          onClick={handleLogin}
+          onClick={() => handleLogin(googleProvider)}
         >
           Login with Google
         </Button>
         <Button
           name="loginWithFacebook"
           style={{ width: "100%" }}
-          onClick={handleLogin}
+          onClick={() => handleLogin(facebookProvider)}
         >
           Login with Facebook
         </Button>
