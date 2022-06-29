@@ -33,4 +33,4 @@ The project can be viewed in the browser at
 
 ## Acknowledgments
 
-- This project built based on this tutorial: [https://www.youtube.com/watch?v=YZhNUU4_Pjw&t=21s](https://www.youtube.com/watch?v=YZhNUU4_Pjw&t=21s)
+- This project was built based on this tutorial: [https://www.youtube.com/watch?v=YZhNUU4_Pjw&t=21s](https://www.youtube.com/watch?v=YZhNUU4_Pjw&t=21s)
