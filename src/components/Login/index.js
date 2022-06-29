@@ -3,6 +3,7 @@ import { Row, Col, Button, Typography } from "antd";
 import {
   signInWithPopup,
   FacebookAuthProvider,
+  GoogleAuthProvider,
   getAdditionalUserInfo,
 } from "firebase/auth";
 import { auth } from "../../firebase/config";
@@ -11,8 +12,13 @@ import { addDocument, generateKeywords } from "../../firebase/services";
 const { Title } = Typography;
 
 const Login = () => {
-  const handleLogin = async () => {
-    const data = await signInWithPopup(auth, new FacebookAuthProvider());
+  const handleLogin = async (e) => {
+    const name = e.target.name;
+    const provider =
+      name === "loginWithFacebook"
+        ? new FacebookAuthProvider()
+        : new GoogleAuthProvider();
+    const data = await signInWithPopup(auth, provider);
     const additionalUserInfo = getAdditionalUserInfo(data);
     if (additionalUserInfo.isNewUser) {
       const { user } = data;
@@ -32,10 +38,18 @@ const Login = () => {
     <Row justify="center" style={{ height: 800 }}>
       <Col span={8}>
         <Title style={{ textAlign: "center" }}>Chat App</Title>
-        <Button style={{ width: "100%", marginBottom: 5 }}>
+        <Button
+          name="loginWithGoogle"
+          style={{ width: "100%", marginBottom: 5 }}
+          onClick={handleLogin}
+        >
           Login with Google
         </Button>
-        <Button style={{ width: "100%" }} onClick={handleLogin}>
+        <Button
+          name="loginWithFacebook"
+          style={{ width: "100%" }}
+          onClick={handleLogin}
+        >
           Login with Facebook
         </Button>
       </Col>
