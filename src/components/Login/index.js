@@ -22,7 +22,7 @@ const Login = () => {
     const additionalUserInfo = getAdditionalUserInfo(data);
     if (additionalUserInfo.isNewUser) {
       const { user } = data;
-      console.log({ user });
+     // console.log({ user });
       addDocument("users", {
         displayName: user.displayName,
         email: user.email,
