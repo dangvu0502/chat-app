@@ -179,7 +179,7 @@ export default function ChatWindow() {
                 />
               </Form.Item>
               <Button type="primary" onClick={handleOnSubmit}>
-                Gửi
+                Send
               </Button>
             </FormStyled>
           </ContentStyled>
