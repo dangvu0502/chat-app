@@ -81,26 +81,29 @@ export default function ChatWindow() {
   const inputRef = useRef(null);
   const messageListRef = useRef(null);
 
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleOnSubmit = () => {
-    addDocument("messages", {
-      text: inputValue,
-      uid,
-      photoURL,
-      roomId: selectedRoom.id,
-      displayName,
-    });
-
-    form.resetFields(["message"]);
-
-    // focus to input again after submit
-    if (inputRef?.current) {
-      setTimeout(() => {
-        inputRef.current.focus();
+    if (inputValue.length !== 0) {
+      addDocument("messages", {
+        text: inputValue,
+        uid,
+        photoURL,
+        roomId: selectedRoom.id,
+        displayName,
       });
+      setInputValue("");
+      form.resetFields(["message"]);
+
+      // focus to input again after submit
+      if (inputRef?.current) {
+        setTimeout(() => {
+          inputRef.current.focus();
+        });
+      }
     }
   };
 
@@ -178,7 +181,11 @@ export default function ChatWindow() {
                   autoComplete="off"
                 />
               </Form.Item>
-              <Button type="primary" onClick={handleOnSubmit}>
+              <Button
+                type="primary"
+                onClick={handleOnSubmit}
+                disabled={inputValue.length === 0}
+              >
                 Send
               </Button>
             </FormStyled>
