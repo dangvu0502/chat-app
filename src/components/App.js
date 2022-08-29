@@ -12,8 +12,8 @@ function App() {
       <AuthProvider>
         <AppProvider>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<ChatRoom />} />
+            <Route path="*" element={<Login />} />
+            <Route exact path="/" element={<ChatRoom />} />
           </Routes>
           <AddRoomModal />
           <InviteMemberModal />
